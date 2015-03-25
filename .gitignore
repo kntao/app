@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+target
+app.iml
+flume_client/target/
+flume_client/flume_client.iml
+spark_test/target
+spark_test/spark_test.iml

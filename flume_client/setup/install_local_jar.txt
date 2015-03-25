@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=d:\java\flume-ng-log4jappender-1.5.2.jar -DgroupId=com.juniorchina -DartifactId=flume-ng-log4jappender -Dversion=1.5.2 -Dpackaging=jar
