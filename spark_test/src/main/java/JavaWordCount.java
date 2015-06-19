@@ -39,5 +39,7 @@ public class JavaWordCount {
 
         System.out.println(counts.collect());
 
+        sc.stop();
+
     }
 }

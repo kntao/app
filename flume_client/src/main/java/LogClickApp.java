@@ -5,17 +5,16 @@ import org.slf4j.LoggerFactory;
  * Created by qingtao.kong on 2015/3/9.
  */
 public class LogClickApp {
-    private static Logger logger = LoggerFactory.getLogger("app.click");
+    private static final Logger logger = LoggerFactory.getLogger("app.click");
     public static void main(String [] args){
-        for(int j = 0; j < 10; j++) {
-            new Thread("t" + j){
-                public  void run(){
-                    for (int i = 0; i < 1000000000; i++) {
-                        logger.info("uid" + i +",newsid" +i);
-                        logger.debug("click come from " + i);
-                    }
-                }
-            }.start();
+        //Log4jXMLConfig.init();
+
+        while (true) {
+            String uid = "XXXXXXXXXXXXXX";
+            String rowkey = "481c7ffffeb2d93aaf60593efa250000";
+            String infotype = "1";
+            String message = String.format("%s,%s,%s", uid, infotype, rowkey);
+            logger.info(message);
         }
     }
 }

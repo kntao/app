@@ -4,7 +4,12 @@ import org.apache.flume.api.RpcClient;
 import org.apache.flume.api.RpcClientFactory;
 import org.apache.flume.event.EventBuilder;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.nio.charset.Charset;
+import java.util.Enumeration;
 import java.util.Map;
 
 /**
@@ -30,8 +35,27 @@ public class AvroRpcClientFacade {
 
         Event event = EventBuilder.withBody(data, Charset.forName("UTF-8"));
         Map<String, String> headers = event.getHeaders();
-        headers.put("flume.client.log4j.logger.name","app.view");
+        headers.put("app.name","JCStock");
+        headers.put("app.event.type","app.click");
 
+        try {
+            String hostIp = null;
+            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+            while (networkInterfaces.hasMoreElements()) {
+                NetworkInterface ni = (NetworkInterface) networkInterfaces.nextElement();
+                Enumeration<InetAddress> nias = ni.getInetAddresses();
+                while (nias.hasMoreElements()) {
+                    InetAddress ia = (InetAddress) nias.nextElement();
+                    if (!ia.isLinkLocalAddress()
+                            && !ia.isLoopbackAddress()
+                            && ia instanceof Inet4Address) {
+                        hostIp = ia.getHostAddress();
+                    }
+                }
+            }
+            headers.put("app.source.host", hostIp + "");
+        } catch (SocketException e) {
+        }
         // Send the event
         try {
             client.append(event);

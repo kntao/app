@@ -9,7 +9,8 @@ public class LogTestApp {
 
 
     public static void main(String args[]) throws Exception {
-        for(int j = 0; j < 10; j++) {
+        int threadCount = Integer.parseInt(args[0]);
+        for(int j = 0; j < threadCount; j++) {
             new Thread("t" + j){
               public  void run(){
                   for (int i = 0; i < 100000000; i++) {
