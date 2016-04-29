@@ -12,7 +12,7 @@ public class GreenplumTest {
     public static void main(String[] args) {
         try {
             Class.forName("com.pivotal.jdbc.GreenplumDriver");
-            Connection db = DriverManager.getConnection("jdbc:pivotal:greenplum://192.168.5.252:5432;DatabaseName=mining","dev","manying123");
+            Connection db = DriverManager.getConnection("jdbc:pivotal:greenplum://192.168.5.252:5432;DatabaseName=mining","dev","XXXX");
             Statement st = db.createStatement();
             ResultSet rs = st.executeQuery("select * from test limit 10 offset 0");
             while (rs.next()) {
