@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
  * Created by qingtao.kong on 2015/3/5.
  */
 public class LogTestApp {
-    private static Logger logger = LoggerFactory.getLogger("app.login");
+    private static Logger logger = LoggerFactory.getLogger("app.test");
 
 
     public static void main(String args[]) throws Exception {
-        int threadCount = Integer.parseInt(args[0]);
+        int threadCount = 10;
         for(int j = 0; j < threadCount; j++) {
             new Thread("t" + j){
               public  void run(){
